@@ -1,12 +1,20 @@
 import React from "react";
-import "./Navbar.scss";
+import { Nav, List, Item, Container, SearchBox } from "./Navbar.style.js";
 
 function Navbar() {
   return (
-    <nav className="nav-bar">
-      <ul className="nav-listt">lol profile</ul>
-      <ul className="nav-list">search</ul>
-    </nav>
+    <Nav>
+      <Container>
+        <List floatRight>
+          <Item>LoL Profile</Item>
+        </List>
+        <List floatLeft>
+          <Item>
+            <SearchBox />
+          </Item>
+        </List>
+      </Container>
+    </Nav>
   );
 }
 

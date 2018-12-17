@@ -15,7 +15,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
   profileIconId: 577,
   revisionDate: 1544465162000,
   summonerLevel: 56 }
-
  */
 
 app.get("/name/:summoner_name", (req, res) => {
@@ -143,6 +142,23 @@ app.get("/match-lists/:account_id", (req, res) => {
       return res.status(400).json(e);
     });
 });
+
+/* 
+{
+  "gameId": 3866940478,
+  "platformId": "EUW1",
+  "gameCreation": 1544998842205,
+  "gameDuration": 1072,
+  "queueId": 1200,
+  "mapId": 21,
+  "seasonId": 11,
+  "gameVersion": "8.24.255.8524",
+  "gameMode": "GAMEMODEX",
+  "gameType": "MATCHED_GAME",
+  "teams":{},
+  "participants": {},
+  "participantIdentities" : {}
+*/
 app.get("/match-info/:match_id", (req, res) => {
   const { match_id } = req.params;
   api

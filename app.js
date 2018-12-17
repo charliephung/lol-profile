@@ -143,6 +143,17 @@ app.get("/match-lists/:account_id", (req, res) => {
       return res.status(400).json(e);
     });
 });
+app.get("/match-info/:match_id", (req, res) => {
+  const { match_id } = req.params;
+  api
+    .getSummonerMatchInfoByMatchId(match_id)
+    .then(info => {
+      return res.status(200).json(info);
+    })
+    .catch(e => {
+      return res.status(400).json(e);
+    });
+});
 // port
 const PORT = process.env.port || 3000;
 app.listen(PORT, () => {

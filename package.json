@@ -8,7 +8,7 @@
     "server": "nodemon app.js",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
-  "author": "",
+  "author": "Charlie Phung",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.18.0",

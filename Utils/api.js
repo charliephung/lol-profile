@@ -1,6 +1,6 @@
 const axios = require("axios");
 
-const API_KEY = "RGAPI-421125c1-54f7-4d11-bda6-a00d0f6abde9";
+const API_KEY = "RGAPI-9a6eebdd-1ab8-4287-a269-ea87ce561570";
 const header = {
   Origin: "https://developer.riotgames.com",
   "Accept-Charset": "application/x-www-form-urlencoded; charset=UTF-8",

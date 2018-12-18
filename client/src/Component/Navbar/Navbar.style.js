@@ -24,4 +24,3 @@ export const Item = styled.li`
   font-size: 26px;
   padding: 0 20px;
 `;
-export const SearchBox = styled.input``;

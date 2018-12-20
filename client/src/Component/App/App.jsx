@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import Navbar from "Navbar/Navbar";
-import Header from "Header/Header";
-import Profile from "Profile/Profile";
-import Overview from "Overview/Overview";
+import Navbar from "Component/Navbar/Navbar";
+import Header from "Component/Header/Header";
+import Profile from "Component/Profile/Profile";
+import Overview from "Component/Overview/Overview";
 import styled from "styled-components";
 import { GlobalStyle } from "./App.styles";
 

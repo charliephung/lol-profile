@@ -1,27 +1,27 @@
 import React from "react";
-import styled from "styled-components";
-
-const Card = styled.div`
-  height: 150px;
-  display: flex;
-  align-items: center;
-`;
-const Wrapper = styled.div`
-  margin-top: 20px;
-  margin-left: 10px;
-  box-shadow: 3px 4px 14px rgba(59, 43, 91, 0.4);
-  border-radius: 5px;
-  padding: 10px;
-  align-items: center;
-  display: flex;
-  flex-grow: 1;
-`;
+import { Wrapper, Card } from "./Overview.styles";
+import { Doughnut } from "react-chartjs-2";
 
 function Overview() {
   return (
     <Wrapper>
       <Card>
-        <h1>Hello</h1>
+        <Doughnut
+          width={150}
+          data={{
+            labels: ["W", "L"],
+            datasets: [
+              {
+                label: "KDA",
+                data: [2, 3],
+                backgroundColor: [
+                  "rgba(92, 172, 255, 1)",
+                  "rgba(255, 99, 122, 1)"
+                ]
+              }
+            ]
+          }}
+        />
       </Card>
     </Wrapper>
   );

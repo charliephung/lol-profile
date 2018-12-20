@@ -1,3 +1,6 @@
 import { combineReducers } from "redux";
+import matchesList from "./matchesList";
 
-export default combineReducers({});
+export default combineReducers({
+  matchesList
+});

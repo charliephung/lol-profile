@@ -1,1 +1,0 @@
-export const GET_MATCHES_LIST = "GET_MATCHES_LIST";

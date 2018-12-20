@@ -1,6 +1,6 @@
 import React from "react";
 import { Nav, List, Item, Container } from "./Navbar.style.js";
-import SearchBox from "./SearchBox/SearchBox";
+import SearchBox from "common/SearchBox/SearchBox";
 
 function Navbar() {
   return (

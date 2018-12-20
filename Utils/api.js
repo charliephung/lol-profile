@@ -1,23 +1,22 @@
 const axios = require("axios");
-
-const API_KEY = "RGAPI-9a6eebdd-1ab8-4287-a269-ea87ce561570";
-const header = {
-  Origin: "https://developer.riotgames.com",
-  "Accept-Charset": "application/x-www-form-urlencoded; charset=UTF-8",
-  "X-Riot-Token": API_KEY,
-  "Accept-Language": "en-US,en;q=0.9",
-  "User-Agent":
-    "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36"
-};
-const URL_HEAD = `https://euw1.api.riotgames.com/lol/`;
+const { get } = require("./utils");
+const championData = require("./championData.json").data;
+const championSkills = require("./championSkills.json");
+const { API_KEY, header, URL_HEAD } = require("../configs/config");
 const axiosOpt = {
   method: "GET",
   params: { api_key: API_KEY },
   header
 };
 const api = {
+  getChampionSkillsByName(name) {
+    return Promise.resolve(championSkills.find(champ => get(champ, name)));
+  },
+  getChampionByName(name) {
+    return Promise.resolve(get(championData, name));
+  },
   getSummonerMatchInfoByMatchId(id) {
-    const END_POINT = `match/v3/matches/${id}`;
+    const END_POINT = `match/v4/matches/${id}`;
     return axios({
       ...axiosOpt,
       url: URL_HEAD + END_POINT
@@ -30,7 +29,7 @@ const api = {
       });
   },
   getSummonerMatchListsByAccountId(id) {
-    const END_POINT = `match/v3/matchlists/by-account/${id}`;
+    const END_POINT = `match/v4/matchlists/by-account/${id}`;
     return axios({
       ...axiosOpt,
       url: URL_HEAD + END_POINT
@@ -43,7 +42,7 @@ const api = {
       });
   },
   getSummonerInfoByName(name) {
-    const END_POINT = `summoner/v3/summoners/by-name/${name}`;
+    const END_POINT = `summoner/v4/summoners/by-name/${name}`;
     return axios({
       ...axiosOpt,
       url: URL_HEAD + END_POINT
@@ -56,7 +55,7 @@ const api = {
       });
   },
   getSummonerMasteryById(id) {
-    const END_POINT = `champion-mastery/v3/champion-masteries/by-summoner/${id}`;
+    const END_POINT = `champion-mastery/v4/champion-masteries/by-summoner/${id}`;
     return axios({
       ...axiosOpt,
       url: URL_HEAD + END_POINT

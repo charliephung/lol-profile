@@ -1,15 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "Component/App/App";
-import { createStore } from "redux";
+import { createStore, applyMiddleware, compose } from "redux";
 import { Provider } from "react-redux";
-import reducer from "./reducers";
+import reducers from "./reducers";
+import thunk from "redux-thunk";
 import * as serviceWorker from "./serviceWorker";
 
-const store = createStore(
-  reducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(reducers, composeEnhancers(applyMiddleware(thunk)));
 
 const ReduxConnectedApp = (
   <Provider store={store}>

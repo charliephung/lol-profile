@@ -7,7 +7,13 @@ import MatchesListContainer from "Component/MatchesList/MatchesListContainer";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { compose } from "redux";
-import { getMatchesList } from "actions";
+import {
+  getMatchesList,
+  getSummonerByName,
+  getSummonerInfoById,
+  getMatchInfo
+} from "actions/api";
+import { actSummonerInfo, actMatchesList } from "actions";
 import { GlobalStyle } from "./App.styles";
 
 const Container = styled.div`
@@ -23,13 +29,22 @@ const Flex = styled.div`
 // https://cdn.communitydragon.org/latest/champion/236/splash-art
 class App extends Component {
   componentDidMount() {
-    this.props.getMatchesList(
-      "AL5QShkjgo7Za7A3WyTBLTvknQLUuPT6vd5ViYehdG1O_bI"
-    );
+    getSummonerByName("Black Rangerrr")
+      .then(info => {
+        getSummonerInfoById(info.id).then(summoner =>
+          this.props.actSummonerInfo(summoner)
+        );
+        return info.accountId;
+      })
+      .then(accountId => getMatchesList(accountId))
+      .then(matchesList => matchesList.map(match => getMatchInfo(match.gameId)))
+      .then(promises => Promise.all(promises))
+      .then(match => {
+        console.log(match);
+      });
   }
   render() {
-    const { matchesList } = this.props;
-
+    const { matchesList, summonerInfo } = this.props;
     return (
       <div className="app">
         <GlobalStyle />
@@ -37,7 +52,7 @@ class App extends Component {
         <Container>
           <Header />
           <Flex>
-            <Profile />
+            <Profile summonerInfo={summonerInfo} />
             <Overview />
           </Flex>
           <div>
@@ -50,10 +65,12 @@ class App extends Component {
 }
 
 const mapState = state => ({
-  matchesList: state.matchesList
+  matchesList: state.matchesList,
+  summonerInfo: state.summonerInfo
 });
 const mapDispatch = {
-  getMatchesList
+  actSummonerInfo,
+  actMatchesList
 };
 
 const EnhancedApp = compose(

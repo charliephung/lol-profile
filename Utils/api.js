@@ -17,56 +17,37 @@ const api = {
   },
   getSummonerMatchInfoByMatchId(id) {
     const END_POINT = `match/v4/matches/${id}`;
-    return axios({
-      ...axiosOpt,
-      url: URL_HEAD + END_POINT
-    })
-      .then(result => {
-        return result.data;
-      })
-      .catch(err => {
-        return err.response.data;
-      });
+    return request(axiosOpt, URL_HEAD + END_POINT);
   },
   getSummonerMatchListsByAccountId(id) {
     const END_POINT = `match/v4/matchlists/by-account/${id}`;
-    return axios({
-      ...axiosOpt,
-      url: URL_HEAD + END_POINT
-    })
-      .then(result => {
-        return result.data;
-      })
-      .catch(err => {
-        return err.response.data;
-      });
+    return request(axiosOpt, URL_HEAD + END_POINT);
   },
   getSummonerInfoByName(name) {
     const END_POINT = `summoner/v4/summoners/by-name/${name}`;
-    return axios({
-      ...axiosOpt,
-      url: URL_HEAD + END_POINT
-    })
-      .then(result => {
-        return result.data;
-      })
-      .catch(err => {
-        return err.response.data;
-      });
+    return request(axiosOpt, URL_HEAD + END_POINT);
   },
   getSummonerMasteryById(id) {
     const END_POINT = `champion-mastery/v4/champion-masteries/by-summoner/${id}`;
-    return axios({
-      ...axiosOpt,
-      url: URL_HEAD + END_POINT
-    })
-      .then(result => {
-        return result.data;
-      })
-      .catch(err => {
-        return err.response.data;
-      });
+    return request(axiosOpt, URL_HEAD + END_POINT);
+  },
+  getSummonerLeagueBySummonerId(id) {
+    const END_POINT = `league/v4/positions/by-summoner/${id}`;
+    return request(axiosOpt, URL_HEAD + END_POINT);
   }
 };
+
+function request(axiosOpt, url) {
+  return axios({
+    ...axiosOpt,
+    url
+  })
+    .then(result => {
+      return result.data;
+    })
+    .catch(err => {
+      return err.response.data;
+    });
+}
 
 module.exports = api;

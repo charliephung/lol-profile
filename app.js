@@ -38,6 +38,18 @@ app.get("/mastery/:summoner_id", (req, res) => {
     });
 });
 
+app.get("/league/:summoner_id", (req, res) => {
+  const { summoner_id } = req.params;
+  api
+    .getSummonerLeagueBySummonerId(summoner_id)
+    .then(info => {
+      return res.status(200).json(info);
+    })
+    .catch(e => {
+      return res.status(400).json(e);
+    });
+});
+
 app.get("/match-lists/:account_id", (req, res) => {
   const { account_id } = req.params;
   api

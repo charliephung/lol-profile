@@ -4,8 +4,8 @@ const initData = [];
 
 const reducer = (state = initData, actions) => {
   switch (actions.type) {
-    case type.SET_MATCHES_LIST:
-      return actions.matchesList;
+    case type.SET_SUMMONER_INFO:
+      return actions.summonerInfo;
     default:
       return state;
   }

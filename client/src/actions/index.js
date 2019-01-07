@@ -6,6 +6,14 @@ export const actSummonerInfo = summonerInfo => dispatch => {
     summonerInfo
   });
 };
+
+export const actRankInfo = rankInfo => dispatch => {
+  dispatch({
+    type: types.SET_RANK_INFO,
+    rankInfo
+  });
+};
+
 export const actMatchesList = matchesList => dispatch => {
   dispatch({
     type: types.SET_MATCHES_LIST,

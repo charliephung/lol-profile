@@ -1,11 +1,11 @@
 import type from "constant";
 
-const initData = {};
+const initData = [];
 
 const reducer = (state = initData, actions) => {
   switch (actions.type) {
-    case type.SET_SUMMONER_INFO:
-      return actions.summonerInfo;
+    case type.SET_RANK_INFO:
+      return actions.rankInfo;
     default:
       return state;
   }

@@ -34,7 +34,7 @@ export const getMatchInfo = matchId => {
     });
 };
 
-export const getSummonerInfoById = id => {
+export const getRankInfoById = id => {
   return axios
     .get(`${API_URL}/league/${id}`)
     .then(data => {

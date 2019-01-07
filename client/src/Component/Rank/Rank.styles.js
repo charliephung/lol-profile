@@ -8,27 +8,30 @@ export const Wrapper = styled.div`
   padding: 10px;
   align-items: center;
   display: flex;
+  flex-direction: column;
 `;
 
 export const Card = styled.div`
   height: 150px;
   display: flex;
   align-items: center;
+  font-size: 15px;
+  font-weight: 600;
 `;
 export const RankIcon = styled.img`
-  width: 150px;
-  height: 100%;
-  padding-right: 20px;
+  width: 120px;
+  height: 120px;
+  padding-right: 40px;
 `;
 export const Heading = styled.h1``;
-export const color = {
-  Bronze: "#683d27",
-  Challenger: "#1574f6",
-  Diamond: "#506b9c",
-  Gold: "#ecc57d",
-  Grandmaster: "#fe585a",
-  Iron: "#595050",
-  Master: "#a13f8b",
-  Platinum: "#77dcd6",
-  Silver: "#829ba3"
+export const textColor = {
+  BRONZE: "#683d27",
+  CHALLENGER: "#1574f6",
+  DIAMOND: "#506b9c",
+  GOLD: "#ecc57d",
+  GRANDMASTER: "#fe585a",
+  IRON: "#595050",
+  MASTER: "#a13f8b",
+  PLATINUM: "#77dcd6",
+  SILVER: "#829ba3"
 };

@@ -5,6 +5,20 @@ export const Card = styled.div`
   display: flex;
   align-items: center;
 `;
+
+export const BorderRight = styled.div`
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 2px;
+    height: 100%;
+    background-color: ${props => props.color};
+  }
+`;
+
 export const Wrapper = styled.div`
   margin-top: 20px;
   margin-left: 10px;

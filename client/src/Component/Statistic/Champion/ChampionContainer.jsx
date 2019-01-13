@@ -8,7 +8,6 @@ const Flex = styled.div`
 `;
 
 function ChampionContainer(props) {
-  console.log(props);
   return (
     <Flex>
       {props.championsList.map(champ => (

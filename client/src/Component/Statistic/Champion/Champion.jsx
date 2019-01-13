@@ -15,13 +15,14 @@ const Img = styled.img`
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  margin-right: 20px;
+  margin-right: 10px;
 `;
 
 function Champion(props) {
   const { champion, plays, results } = props.champion;
-  console.log(plays);
-  console.log(results);
+  const win = results.filter(r => r === true).length;
+  const loss = results.length - win;
+  const winRatio = ((win / results.length) * 100).toFixed(2);
 
   return (
     <Wrapper>
@@ -31,7 +32,12 @@ function Champion(props) {
         }.png`}
         alt={champion.id}
       />
-      <p>{plays}</p>
+      <div>
+        <p>
+          <strong>{winRatio} %</strong>
+        </p>
+        <p>{`${win} W / ${loss} L`}</p>
+      </div>
     </Wrapper>
   );
 }

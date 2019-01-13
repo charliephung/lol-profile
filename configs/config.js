@@ -1,5 +1,5 @@
 const config = {
-  API_KEY: "RGAPI-3fb86188-b27f-4822-a3c3-79c7586b47c4",
+  API_KEY: "RGAPI-1a0e2f75-711f-4787-bf81-00e48faa3508",
   header: {
     Origin: "https://developer.riotgames.com",
     "Accept-Charset": "application/x-www-form-urlencoded; charset=UTF-8",

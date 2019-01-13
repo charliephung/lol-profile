@@ -4,6 +4,7 @@ import Header from "Component/Header/Header";
 import RankContainer from "Component/Rank/RankContainer";
 import StatisticContainer from "Component/Statistic/StatisticContainer";
 import MatchesListContainer from "Component/MatchesList/MatchesListContainer";
+import MasteryContainer from "Component/Mastery/MasteryContainer";
 import { Container, Flex, FlexColumn } from "./App.styles";
 import { connect } from "react-redux";
 import { compose } from "redux";
@@ -11,25 +12,40 @@ import {
   getMatchesList,
   getSummonerByName,
   getRankInfoById,
-  getMatchInfo
+  getMatchInfo,
+  getSummonerMasteryById
 } from "actions/api";
-import { actSummonerInfo, actMatchesList, actRankInfo } from "actions";
+import {
+  actSetSummonerInfo,
+  actSetMatchesList,
+  actSetRankInfo,
+  actSetSummonerMastery
+} from "actions";
 import { GlobalStyle } from "./App.styles";
 
 // https://cdn.communitydragon.org/latest/champion/236/splash-art
 class App extends Component {
   componentDidMount() {
-    const { matchesList, summonerInfo, rankInfo } = localStorage;
-    if (matchesList && summonerInfo && rankInfo) {
-      this.props.actSummonerInfo(JSON.parse(summonerInfo));
-      this.props.actRankInfo(JSON.parse(rankInfo));
-      this.props.actMatchesList(JSON.parse(matchesList));
+    const {
+      matchesList,
+      summonerInfo,
+      rankInfo,
+      summonerMastery
+    } = localStorage;
+    if (true) {
+      this.props.actSetSummonerInfo(JSON.parse(summonerInfo));
+      this.props.actSetRankInfo(JSON.parse(rankInfo));
+      this.props.actSetMatchesList(JSON.parse(matchesList));
+      this.props.actSetSummonerMastery(JSON.parse(summonerMastery));
     } else {
       getSummonerByName("Black Rangerrr")
         .then(info => {
-          this.props.actSummonerInfo(info);
+          this.props.actSetSummonerInfo(info);
+          getSummonerMasteryById(info.id).then(mastery =>
+            this.props.actSetSummonerMastery(mastery)
+          );
           getRankInfoById(info.id).then(rankInfo =>
-            this.props.actRankInfo(rankInfo)
+            this.props.actSetRankInfo(rankInfo)
           );
           return info.accountId;
         })
@@ -39,12 +55,27 @@ class App extends Component {
         )
         .then(promises => Promise.all(promises))
         .then(match => {
-          this.props.actMatchesList(match);
+          this.props.actSetMatchesList(match);
+        })
+        .then(() => {
+          const {
+            matchesList,
+            summonerInfo,
+            rankInfo,
+            summonerMastery
+          } = this.props;
+          localStorage.setItem("matchesList", JSON.stringify(matchesList));
+          localStorage.setItem("summonerInfo", JSON.stringify(summonerInfo));
+          localStorage.setItem("rankInfo", JSON.stringify(rankInfo));
+          localStorage.setItem(
+            "summonerMastery",
+            JSON.stringify(summonerMastery)
+          );
         });
     }
   }
   render() {
-    const { matchesList, summonerInfo, rankInfo } = this.props;
+    const { matchesList, summonerInfo, rankInfo,summonerMastery } = this.props;
 
     return (
       <div className="app">
@@ -55,6 +86,7 @@ class App extends Component {
           <Flex>
             <FlexColumn widthPercent={40}>
               <RankContainer rankInfo={rankInfo} />
+              <MasteryContainer summonerMastery={summonerMastery} />
             </FlexColumn>
             <FlexColumn widthPercent={60}>
               <StatisticContainer
@@ -75,12 +107,14 @@ class App extends Component {
 const mapState = state => ({
   matchesList: state.matchesList,
   summonerInfo: state.summonerInfo,
-  rankInfo: state.rankInfo
+  rankInfo: state.rankInfo,
+  summonerMastery: state.summonerMastery
 });
 const mapDispatch = {
-  actSummonerInfo,
-  actMatchesList,
-  actRankInfo
+  actSetSummonerInfo,
+  actSetMatchesList,
+  actSetRankInfo,
+  actSetSummonerMastery
 };
 
 const EnhancedApp = compose(

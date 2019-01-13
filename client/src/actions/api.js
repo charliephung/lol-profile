@@ -2,6 +2,17 @@ import axios from "axios";
 
 const API_URL = "http://localhost:5000";
 
+export const getSummonerMasteryById = id => {
+  return axios
+  .get(`${API_URL}/mastery/${id}`)
+  .then(data => {
+    return data.data;
+  })
+  .catch(err => {
+    return err.response.data;
+  });
+}
+
 export const getMatchesList = enId => {
   return axios
     .get(`${API_URL}/match-lists/${enId}`)

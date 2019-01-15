@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { LINK } from "constant/link";
 
 const Wrapper = styled.div`
   margin-top: 20px;
@@ -20,14 +21,15 @@ const Profile = styled.div`
   margin-left: 10px;
 `;
 
-function Header() {
+function Header(props) {
+  const { profileIconId, name, summonerLevel } = props.summonerInfo;
   return (
     <Wrapper>
       <Card>
-        <Icon src="http://ddragon.leagueoflegends.com/cdn/8.24.1/img/profileicon/3860.png" />
+        <Icon src={`${LINK}/img/profileicon/${profileIconId}.png`} />
         <Profile>
-          <h1>Black Rangerrr</h1>
-          <p>summonerLevel: 56</p>
+          <h1>{name}</h1>
+          <p>summonerLevel: {summonerLevel}</p>
         </Profile>
       </Card>
     </Wrapper>

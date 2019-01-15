@@ -74,7 +74,7 @@ class App extends Component {
             );
           });
       }
-    }, 3000);
+    }, 500);
   }
   render() {
     const { matchesList, summonerInfo, rankInfo, summonerMastery } = this.props;
